@@ -1,0 +1,26 @@
+---
+layout: page
+---
+
+<h1> {{ page.category }} </h1>
+<br>
+
+{% assign reverse_posts = site.posts | sort: 'post_date' | reverse %}
+{% for p in reverse_posts %}
+    {% if p.categories contains page.category %}
+        {% if p.image %}
+        <div class="col-1-of-3">
+            <img src="{{ p.image }}">
+        </div>
+        <div class="col-2-of-3">
+        {% endif %}
+        <h3><a href="{{ p.url }}" target="_blank" style="{{ p.hidetitle }}"><br/>{{ p.title }}</a></h3>
+        <p><a href="{{ p.url }}" target="_blank">{{ p.subtitle }}</a><br/></p>
+        <p>{{ p.description }}</p>
+        {% if p.image %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<br/>
+
